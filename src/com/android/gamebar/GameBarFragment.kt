@@ -13,13 +13,16 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.preference.ListPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import com.android.gamebar.utils.PartsCustomSeekBarPreference
 import androidx.preference.SwitchPreferenceCompat
 import com.android.settingslib.widget.MainSwitchPreference
 import com.android.gamebar.R
 
-class GameBarFragment : PreferenceFragmentCompat() {
+import java.util.Locale
+
+import com.android.settingslib.widget.SettingsBasePreferenceFragment
+
+class GameBarFragment : SettingsBasePreferenceFragment() {
 
     private var gameBar: GameBar? = null
     private var masterSwitch: MainSwitchPreference? = null

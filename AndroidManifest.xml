@@ -41,7 +41,7 @@
         android:persistent="true"
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true"
-        android:theme="@style/Theme.SubSettingsBase">
+        android:theme="@style/Theme.SubSettingsBase.Expressive">
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -63,7 +63,7 @@
         <activity
             android:name=".GameBarSettingsActivity"
             android:label="@string/game_bar_title"
-            android:theme="@style/Theme.SubSettingsBase"
+            android:theme="@style/Theme.SubSettingsBase.Expressive"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
@@ -117,22 +117,22 @@
         <activity
         android:name=".GameBarPerAppConfigActivity"
         android:exported="false"
-        android:theme="@style/Theme.SubSettingsBase" />
+        android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
     <activity
         android:name=".GameBarLogActivity"
         android:exported="false"
-        android:theme="@style/Theme.SubSettingsBase" />
+        android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
     <activity
         android:name=".PerAppLogViewActivity"
         android:exported="false"
-        android:theme="@style/Theme.SubSettingsBase" />
+        android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
     <activity
         android:name=".LogAnalyticsActivity"
         android:exported="false"
-        android:theme="@style/Theme.SubSettingsBase" />
+        android:theme="@style/Theme.SubSettingsBase.Expressive" />
 
 <!-- FileProvider for sharing log files -->
     <provider
