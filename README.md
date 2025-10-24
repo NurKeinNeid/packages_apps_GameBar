@@ -21,7 +21,48 @@ GameBar is a comprehensive real-time performance monitoring overlay for Android 
 
 ## Screenshots
 
-*Coming soon*
+### GameBar Settings & Customization
+<p align="center">
+  <img src="readme_resources/settings_01.png" width="200" />
+  <img src="readme_resources/settings_02.png" width="200" />
+  <img src="readme_resources/settings_03.png" width="200" />
+  <img src="readme_resources/settings_04.png" width="200" />
+</p>
+<p align="center">
+  <img src="readme_resources/settings_05.png" width="200" />
+  <img src="readme_resources/settings_06.png" width="200" />
+  <img src="readme_resources/settings_07.png" width="200" />
+  <img src="readme_resources/settings_08.png" width="200" />
+</p>
+<p align="center">
+  <img src="readme_resources/settings_09.png" width="200" />
+  <img src="readme_resources/settings_10.png" width="200" />
+  <img src="readme_resources/settings_11.png" width="200" />
+  <img src="readme_resources/settings_12.png" width="200" />
+</p>
+
+### In-Game Overlay
+<p align="center">
+  <img src="readme_resources/ingame_01.png" width="250" />
+  <img src="readme_resources/ingame_02.png" width="250" />
+  <img src="readme_resources/ingame_03.png" width="250" />
+</p>
+<p align="center">
+  <img src="readme_resources/ingame_04.png" width="250" />
+  <img src="readme_resources/ingame_05.png" width="250" />
+  <img src="readme_resources/ingame_06.png" width="250" />
+</p>
+
+### Logging & Analytics
+<p align="center">
+  <img src="readme_resources/logs_01.png" width="200" />
+  <img src="readme_resources/logs_02.png" width="200" />
+  <img src="readme_resources/logs_03.png" width="200" />
+</p>
+<p align="center">
+  <img src="readme_resources/logs_04.png" width="200" />
+  <img src="readme_resources/logs_05.png" width="200" />
+</p>
 
 ## Requirements
 
