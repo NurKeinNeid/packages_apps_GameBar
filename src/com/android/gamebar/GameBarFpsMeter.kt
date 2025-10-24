@@ -114,7 +114,7 @@ class GameBarFpsMeter private constructor(context: Context) {
 
     private fun readLegacyFps(): Float {
         try {
-            BufferedReader(FileReader("/sys/class/drm/sde-crtc-0/measured_fps")).use { br ->
+            BufferedReader(FileReader(GameBarConfig.fpsSysfsPath)).use { br ->
                 val line = br.readLine()
                 if (line != null && line.startsWith("fps:")) {
                     val parts = line.split("\\s+".toRegex())

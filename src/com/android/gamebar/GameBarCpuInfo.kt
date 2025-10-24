@@ -17,10 +17,8 @@ object GameBarCpuInfo {
     private var prevIdle = -1L
     private var prevTotal = -1L
 
-    private const val CPU_TEMP_PATH = "/sys/class/thermal/thermal_zone48/temp"
-
     fun getCpuUsage(): String {
-        val line = readLine("/proc/stat")
+        val line = readLine(GameBarConfig.procStatPath)
         if (line == null || !line.startsWith("cpu ")) return "N/A"
         val parts = line.split("\\s+".toRegex())
         if (parts.size < 8) return "N/A"
@@ -56,8 +54,7 @@ object GameBarCpuInfo {
 
     fun getCpuFrequencies(): List<String> {
         val result = mutableListOf<String>()
-        val cpuDirPath = "/sys/devices/system/cpu/"
-        val cpuDir = File(cpuDirPath)
+        val cpuDir = File(GameBarConfig.cpuBasePath)
         val files = cpuDir.listFiles { _, name -> name.matches(Regex("cpu\\d+")) }
         if (files.isNullOrEmpty()) {
             return result
@@ -85,12 +82,11 @@ object GameBarCpuInfo {
     }
 
     fun getCpuTemp(): String {
-        val line = readLine(CPU_TEMP_PATH) ?: return "N/A"
+        val line = readLine(GameBarConfig.cpuTempPath) ?: return "N/A"
         val cleanLine = line.trim()
         return try {
             val raw = cleanLine.toFloat()
-            // Device reports in millidegrees (e.g., 33849 = 33.849°C)
-            val celsius = raw / 1000f
+            val celsius = raw / GameBarConfig.cpuTempDivider.toFloat()
             // Sanity check: CPU temp should be between 0 and 150°C
             if (celsius > 0f && celsius < 150f) {
                 String.format(Locale.getDefault(), "%.1f", celsius)

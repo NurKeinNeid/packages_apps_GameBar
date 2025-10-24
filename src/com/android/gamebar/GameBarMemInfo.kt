@@ -17,7 +17,7 @@ object GameBarMemInfo {
         var memAvailable = 0L
 
         try {
-            BufferedReader(FileReader("/proc/meminfo")).use { br ->
+            BufferedReader(FileReader(GameBarConfig.procMeminfoPath)).use { br ->
                 var line: String?
                 while (br.readLine().also { line = it } != null) {
                     line?.let {
@@ -57,9 +57,8 @@ object GameBarMemInfo {
     }
 
     fun getRamSpeed(): String {
-        val path = "/sys/devices/system/cpu/bus_dcvs/DDR/cur_freq"
         try {
-            BufferedReader(FileReader(path)).use { br ->
+            BufferedReader(FileReader(GameBarConfig.ramFreqPath)).use { br ->
                 val line = br.readLine()
                 if (!line.isNullOrEmpty()) {
                     try {
@@ -81,14 +80,13 @@ object GameBarMemInfo {
     }
 
     fun getRamTemp(): String {
-        val path = "/sys/class/thermal/thermal_zone27/temp"
         try {
-            BufferedReader(FileReader(path)).use { br ->
+            BufferedReader(FileReader(GameBarConfig.ramTempPath)).use { br ->
                 val line = br.readLine()
                 if (!line.isNullOrEmpty()) {
                     try {
                         val raw = line.trim().toInt()
-                        val celsius = raw / 1000f
+                        val celsius = raw / GameBarConfig.ramTempDivider.toFloat()
                         return String.format("%.1f°C", celsius)
                     } catch (ignored: NumberFormatException) {
                     }

@@ -12,12 +12,8 @@ import java.io.IOException
 
 object GameBarGpuInfo {
 
-    private const val GPU_USAGE_PATH = "/sys/class/kgsl/kgsl-3d0/gpu_busy_percentage"
-    private const val GPU_CLOCK_PATH = "/sys/class/kgsl/kgsl-3d0/gpuclk"
-    private const val GPU_TEMP_PATH = "/sys/class/kgsl/kgsl-3d0/temp"
-
     fun getGpuUsage(): String {
-        val line = readLine(GPU_USAGE_PATH) ?: return "N/A"
+        val line = readLine(GameBarConfig.gpuUsagePath) ?: return "N/A"
         val cleanLine = line.replace("%", "").trim()
         return try {
             val value = cleanLine.toInt()
@@ -28,26 +24,26 @@ object GameBarGpuInfo {
     }
 
     fun getGpuClock(): String {
-        val line = readLine(GPU_CLOCK_PATH) ?: return "N/A"
+        val line = readLine(GameBarConfig.gpuClockPath) ?: return "N/A"
         val cleanLine = line.trim()
-        return try {
-            val hz = cleanLine.toLong()
-            val mhz = hz / 1_000_000
-            mhz.toString()
+        try {
+            val hz = line.trim().toLong()
+            val mhz = hz / GameBarConfig.gpuClockDivider
+            return "$mhz".toString()
         } catch (e: NumberFormatException) {
-            "N/A"
+            return "N/A"
         }
     }
 
     fun getGpuTemp(): String {
-        val line = readLine(GPU_TEMP_PATH) ?: return "N/A"
+        val line = readLine(GameBarConfig.gpuTempPath) ?: return "N/A"
         val cleanLine = line.trim()
-        return try {
-            val raw = cleanLine.toFloat()
-            val celsius = raw / 1000f
-            String.format("%.1f", celsius)
+        try {
+            val raw = line.trim().toInt()
+            val celsius = raw / GameBarConfig.gpuTempDivider.toFloat()
+            return String.format(Locale.getDefault(), "%.1f", celsius)
         } catch (e: NumberFormatException) {
-            "N/A"
+            return "N/A"
         }
     }
 

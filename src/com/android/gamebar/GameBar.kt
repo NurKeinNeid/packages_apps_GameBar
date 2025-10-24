@@ -63,8 +63,6 @@ class GameBar private constructor(context: Context) {
             return sInstance?.isShowing == true
         }
 
-        private const val FPS_PATH = "/sys/class/drm/sde-crtc-0/measured_fps"
-        private const val BATTERY_TEMP_PATH = "/sys/class/power_supply/battery/temp"
         private const val PREF_KEY_X = "game_bar_x"
         private const val PREF_KEY_Y = "game_bar_y"
         private const val TOUCH_SLOP = 30f
@@ -73,6 +71,11 @@ class GameBar private constructor(context: Context) {
     private val context: Context = context.applicationContext
     private val windowManager: WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private val handler: Handler = Handler(Looper.getMainLooper())
+
+    init {
+        // Initialize config with context
+        GameBarConfig.init(context)
+    }
 
     private var overlayView: View? = null
     private var rootLayout: LinearLayout? = null
@@ -459,11 +462,11 @@ class GameBar private constructor(context: Context) {
 
         // 2) Battery temp - Always collect for logging
         var batteryTempStr = "N/A"
-        val tmp = readLine(BATTERY_TEMP_PATH)
+        val tmp = readLine(GameBarConfig.batteryTempPath)
         if (!tmp.isNullOrEmpty()) {
             try {
                 val raw = tmp.trim().toInt()
-                val celsius = raw / 10f
+                val celsius = raw / GameBarConfig.batteryTempDivider.toFloat()
                 batteryTempStr = String.format(Locale.getDefault(), "%.1f", celsius)
             } catch (ignored: NumberFormatException) {}
         }
