@@ -82,8 +82,7 @@ GameBar is a comprehensive real-time performance monitoring overlay for Android 
 
 1. **Clone the repository** into your ROM source:
    ```bash
-   cd packages/apps
-   git clone https://github.com/yourusername/GameBar.git
+   git clone https://github.com/kenway214/packages_apps_GameBar.git /packages/apps/GameBar -b main
    ```
 
 2. **Include in device makefile**:
@@ -286,6 +285,7 @@ limitations under the License.
 - Original concept inspired by various gaming overlays
 - Built for LineageOS and AOSP-based ROMs
 - Community contributions welcome
+- [ColorPicker](https://github.com/jaredrummler/ColorPicker)
 
 ## Support
 
